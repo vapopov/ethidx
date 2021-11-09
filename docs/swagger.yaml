@@ -1,0 +1,88 @@
+basePath: /
+definitions:
+  ethidx.httpError:
+    type: object
+host: localhost:3000
+info:
+  contact:
+    email: me@vpopov.org
+    name: API Support
+  termsOfService: http://swagger.io/terms/
+  title: Test api
+  version: "1.0"
+paths:
+  /blocks/{id}:
+    get:
+      parameters:
+      - description: Block info id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ethidx.httpError'
+      summary: 'get block header from the ropsten network by: latest, number, hash.'
+  /groups/:
+    get:
+      description: get all groups
+      operationId: get-string-by-int
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              type: integer
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ethidx.httpError'
+      summary: fetches all groups ids.
+  /groups/{id}:
+    get:
+      description: get group by ID
+      parameters:
+      - description: Group ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ethidx.httpError'
+      summary: fetches the group information by id.
+  /indexes/{id}:
+    get:
+      description: get index by ID
+      parameters:
+      - description: Index ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/ethidx.httpError'
+      summary: fetches the index information by id.
+swagger: "2.0"
